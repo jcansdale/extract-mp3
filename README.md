@@ -10,16 +10,28 @@ To run the `download_track.py` script, you will need:
 
 ## Usage
 
-To download a track from Youtube Music, simply run the script with the track's URL as an argument:
+To download a track from Youtube Music, you can either run the script with the track's URL as an argument or enter the URL after the script starts:
 
 ```
 python download_track.py <YouTube Music track URL>
 ```
 
-For example:
+Or, if you do not provide the URL as an argument, the script will prompt you to enter it:
+
+```
+python download_track.py
+```
+
+For example, to download a specific track by providing the URL as an argument:
 
 ```
 python download_track.py https://www.youtube.com/watch?v=EXAMPLE
+```
+
+And if you run the script without an argument, it will ask:
+
+```
+Enter the YouTube Music track URL:
 ```
 
 This will download the specified track as an MP3 file to the current directory.

@@ -1,4 +1,5 @@
 import os
+import sys  # Import sys module to access command line arguments
 from pytube import YouTube
 
 def download_track(url, save_path='./'):
@@ -25,6 +26,10 @@ def download_track(url, save_path='./'):
         print(f"Failed to download the track: {e}")
 
 if __name__ == "__main__":
-    # Example URL
-    url = input("Enter the YouTube Music track URL: ")
+    # Check if a URL is passed as a command line argument
+    if len(sys.argv) > 1:
+        url = sys.argv[1]  # Use the URL passed as command line argument
+    else:
+        # Only prompt for input if no URL is provided as a command line argument
+        url = input("Enter the YouTube Music track URL: ")
     download_track(url)

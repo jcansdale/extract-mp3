@@ -9,6 +9,7 @@ To run the `download_track.py` script, you will need:
 - `pytube` library installed (you can install it using `pip install pytube`)
 - `pytube` library version 10.0.0 or newer for playlist functionality
 - `pydub` library installed (you can install it using `pip install pydub`)
+- `ffmpeg` installed for handling audio conversions (you can install it using your system's package manager or download it from [FFmpeg's official website](https://ffmpeg.org/download.html))
 
 ## Usage
 
@@ -53,3 +54,7 @@ python download_track.py playlist https://www.youtube.com/playlist?list=EXAMPLE
 ```
 
 This will download all tracks in the specified playlist as MP4 files and then convert them to MP3 files using `pydub`, saving them to the current directory.
+
+## Troubleshooting
+
+If you encounter an error stating "Couldn't find ffprobe or avprobe - defaulting to ffprobe, but may not work", it indicates that `ffmpeg` is not properly installed or configured. Ensure that `ffmpeg` is installed on your system and that its binaries are in your system's PATH. For detailed installation instructions, refer to the [FFmpeg's official website](https://ffmpeg.org/download.html).

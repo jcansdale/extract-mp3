@@ -1,6 +1,6 @@
 # extract-mp3
 
-This repository now includes a Python script named `download_track.py` that allows users to download tracks from Youtube Music as MP3 files.
+This repository now includes a Python script named `download_track.py` that allows users to download tracks from Youtube Music as MP4 files and then converts them to MP3 files using `pydub`.
 
 ## Requirements
 
@@ -8,6 +8,7 @@ To run the `download_track.py` script, you will need:
 - Python 3.6 or newer
 - `pytube` library installed (you can install it using `pip install pytube`)
 - `pytube` library version 10.0.0 or newer for playlist functionality
+- `pydub` library installed (you can install it using `pip install pydub`)
 
 ## Usage
 
@@ -35,7 +36,7 @@ And if you run the script without an argument, it will ask:
 Enter the YouTube Music track URL:
 ```
 
-This will download the specified track as an MP3 file to the current directory.
+This will download the specified track as an MP4 file and then convert it to an MP3 file using `pydub`, saving it to the current directory.
 
 ## Downloading a Playlist
 
@@ -51,4 +52,4 @@ For example, to download a whole playlist:
 python download_track.py playlist https://www.youtube.com/playlist?list=EXAMPLE
 ```
 
-This will download all tracks in the specified playlist as MP3 files to the current directory.
+This will download all tracks in the specified playlist as MP4 files and then convert them to MP3 files using `pydub`, saving them to the current directory.

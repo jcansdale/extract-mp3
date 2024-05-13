@@ -1,10 +1,11 @@
 import os
 import sys  # Import sys module to access command line arguments
 from pytube import YouTube, Playlist
+from pydub import AudioSegment  # Import AudioSegment from pydub
 
 def download_track(url, save_path='./'):
     """
-    Downloads a track from YouTube Music as an MP3 file.
+    Downloads a track from YouTube Music as an MP4 file and converts it to MP3.
 
     Args:
         url (str): The URL of the YouTube Music track to download.
@@ -17,17 +18,25 @@ def download_track(url, save_path='./'):
         # Select the audio stream with the highest quality
         audio_stream = yt.streams.get_audio_only()
 
-        # Download the audio stream
-        audio_stream.download(output_path=save_path, filename=yt.title + '.mp3')
+        # Download the audio stream as MP4
+        mp4_filename = yt.title + '.mp4'
+        audio_stream.download(output_path=save_path, filename=mp4_filename)
 
-        print(f"Downloaded '{yt.title}' successfully.")
+        # Convert MP4 to MP3 using pydub
+        mp3_filename = yt.title + '.mp3'
+        AudioSegment.from_file(os.path.join(save_path, mp4_filename)).export(os.path.join(save_path, mp3_filename), format="mp3")
+
+        # Delete the original MP4 file
+        os.remove(os.path.join(save_path, mp4_filename))
+
+        print(f"Downloaded and converted '{yt.title}' successfully.")
 
     except Exception as e:
-        print(f"Failed to download the track: {e}")
+        print(f"Failed to download and convert the track: {e}")
 
 def download_playlist(url, save_path='./'):
     """
-    Downloads all tracks from a YouTube Music playlist as MP3 files.
+    Downloads all tracks from a YouTube Music playlist as MP4 files and converts them to MP3.
 
     Args:
         url (str): The URL of the YouTube Music playlist to download.
@@ -39,13 +48,13 @@ def download_playlist(url, save_path='./'):
 
         # Iterate over all video URLs in the playlist
         for video_url in playlist.video_urls:
-            # Download each track using the existing function
+            # Download and convert each track using the existing function
             download_track(video_url, save_path)
 
-        print(f"Downloaded all tracks from playlist successfully.")
+        print(f"Downloaded and converted all tracks from playlist successfully.")
 
     except Exception as e:
-        print(f"Failed to download the playlist: {e}")
+        print(f"Failed to download and convert the playlist: {e}")
 
 if __name__ == "__main__":
     # Check if a URL is passed as a command line argument

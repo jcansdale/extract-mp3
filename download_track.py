@@ -2,6 +2,7 @@ import os
 import sys  # Import sys module to access command line arguments
 from pytube import YouTube, Playlist
 from pydub import AudioSegment  # Import AudioSegment from pydub
+from pydub.exceptions import CouldntDecodeError
 
 def download_track(url, save_path='./'):
     """
@@ -31,6 +32,8 @@ def download_track(url, save_path='./'):
 
         print(f"Downloaded and converted '{yt.title}' successfully.")
 
+    except CouldntDecodeError:
+        print("Failed to convert the track. Please ensure ffmpeg/ffprobe is installed and available in your PATH.")
     except Exception as e:
         print(f"Failed to download and convert the track: {e}")
 
@@ -53,6 +56,8 @@ def download_playlist(url, save_path='./'):
 
         print(f"Downloaded and converted all tracks from playlist successfully.")
 
+    except CouldntDecodeError:
+        print("Failed to convert one or more tracks in the playlist. Please ensure ffmpeg/ffprobe is installed and available in your PATH.")
     except Exception as e:
         print(f"Failed to download and convert the playlist: {e}")
 

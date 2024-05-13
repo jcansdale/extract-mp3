@@ -6,10 +6,10 @@ This repository now includes a Python script named `download_track.py` that allo
 
 To run the `download_track.py` script, you will need:
 - Python 3.6 or newer
-- `pytube` library installed (you can install it using `pip install pytube`)
-- `pytube` library version 10.0.0 or newer for playlist functionality
-- `pydub` library installed (you can install it using `pip install pydub`)
-- `ffmpeg` installed for handling audio conversions (you can install it using your system's package manager or download it from [FFmpeg's official website](https://ffmpeg.org/download.html))
+- Install the required libraries using `pip install -r requirements.txt`. This will install:
+  - `pytube` library version 10.0.0 or newer for playlist functionality
+  - `pydub` library
+- `ffmpeg` installed for handling audio conversions. `ffmpeg` is not a Python package and needs to be installed separately. You can install it using your system's package manager or download it from [FFmpeg's official website](https://ffmpeg.org/download.html)
 
 ## Usage
 

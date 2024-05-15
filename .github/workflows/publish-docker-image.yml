@@ -7,6 +7,10 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  packages: write
+  contents: read
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest

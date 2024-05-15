@@ -74,6 +74,16 @@ docker run --rm -v $(pwd):/app extract-mp3 playlist <YouTube Music playlist URL>
 ```
 This will download the specified track or all tracks in the specified playlist as MP4 files and then convert them to MP3 files using `pydub`, saving them to the current directory.
 
+## Pulling the Docker Image from GitHub Container Registry
+
+To pull the Docker image from GitHub Container Registry, use the following command:
+
+```
+docker pull ghcr.io/<username>/extract-mp3:latest
+```
+
+Replace `<username>` with your GitHub username.
+
 ## Troubleshooting
 
 If you encounter an error stating "Couldn't find ffprobe or avprobe - defaulting to ffprobe, but may not work", it indicates that `ffmpeg` is not properly installed or configured. Ensure that `ffmpeg` is installed on your system and that its binaries are in your system's PATH. For detailed installation instructions, refer to the [FFmpeg's official website](https://ffmpeg.org/download.html).

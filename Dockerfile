@@ -13,5 +13,8 @@ WORKDIR /app
 # Install Python dependencies from requirements.txt
 RUN pip install -r requirements.txt
 
+# Set the working directory to /downloads
+WORKDIR /downloads
+
 # Set the entry point to run the download_track.py script
-ENTRYPOINT ["python", "download_track.py"]
+ENTRYPOINT ["python", "/app/download_track.py"]

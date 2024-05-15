@@ -7,11 +7,14 @@ RUN apt-get update && apt-get install -y ffmpeg
 # Copy the application code into the Docker image
 COPY . /app
 
-# Set the working directory to /downloads
-WORKDIR /downloads
+# Set the working directory to /app
+WORKDIR /app
 
 # Install Python dependencies from requirements.txt
 RUN pip install -r requirements.txt
+
+# Set the working directory to /downloads
+WORKDIR /downloads
 
 # Set the entry point to run the download_track.py script
 ENTRYPOINT ["python", "/app/download_track.py"]

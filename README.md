@@ -55,6 +55,25 @@ python download_track.py playlist https://www.youtube.com/playlist?list=EXAMPLE
 
 This will download all tracks in the specified playlist as MP4 files and then convert them to MP3 files using `pydub`, saving them to the current directory.
 
+## Docker Support
+
+To run this application using Docker, follow these steps:
+
+1. Build the Docker image:
+```
+docker build -t extract-mp3 .
+```
+
+2. To download a track or playlist, run the Docker container with the necessary arguments:
+```
+docker run --rm -v $(pwd):/app extract-mp3 track <YouTube Music track URL>
+```
+Or for a playlist:
+```
+docker run --rm -v $(pwd):/app extract-mp3 playlist <YouTube Music playlist URL>
+```
+This will download the specified track or all tracks in the specified playlist as MP4 files and then convert them to MP3 files using `pydub`, saving them to the current directory.
+
 ## Troubleshooting
 
 If you encounter an error stating "Couldn't find ffprobe or avprobe - defaulting to ffprobe, but may not work", it indicates that `ffmpeg` is not properly installed or configured. Ensure that `ffmpeg` is installed on your system and that its binaries are in your system's PATH. For detailed installation instructions, refer to the [FFmpeg's official website](https://ffmpeg.org/download.html).

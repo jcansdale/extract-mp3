@@ -66,11 +66,11 @@ docker build -t extract-mp3 .
 
 2. To download a track or playlist, run the Docker container with the necessary arguments, ensuring the working directory is `/downloads`:
 ```
-docker run --rm -v $(pwd):/downloads ghcr.io/jcansdale/extract-mp3 track <YouTube Music track URL>
+docker run -it --rm -v $(pwd):/downloads ghcr.io/jcansdale/extract-mp3 track <YouTube Music track URL>
 ```
 Or for a playlist:
 ```
-docker run --rm -v $(pwd):/downloads ghcr.io/jcansdale/extract-mp3 playlist <YouTube Music playlist URL>
+docker run -it --rm -v $(pwd):/downloads ghcr.io/jcansdale/extract-mp3 playlist <YouTube Music playlist URL>
 ```
 This will download the specified track or all tracks in the specified playlist as MP4 files and then convert them to MP3 files using `pydub`, saving them to the `/downloads` directory.
 

@@ -2,6 +2,18 @@
 
 This repository now includes a Python script named `download_track.py` that allows users to download tracks from Youtube Music as MP4 files and then converts them to MP3 files using `pydub`.
 
+## Setup Instructions for Codespaces
+
+To set up this project in Codespaces, you need to prepare the environment by running the following commands:
+
+```
+$ pip install -r requirements.txt
+$ sudo apt update
+$ sudo apt install ffmpeg
+```
+
+These commands will install the necessary Python packages from `requirements.txt`, update the package lists for upgrades for packages that need upgrading, as well as new package versions, and finally install `ffmpeg`. This prepares the environment for running the `download_track.py` script in Codespaces.
+
 ## Requirements
 
 To run the `download_track.py` script, you will need:

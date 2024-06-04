@@ -4,6 +4,21 @@ from pytube import YouTube, Playlist
 from pydub import AudioSegment  # Import AudioSegment from pydub
 from pydub.exceptions import CouldntDecodeError
 
+def sanitize_filename(filename):
+    """
+    Sanitizes filenames by removing or replacing illegal characters.
+
+    Args:
+        filename (str): The filename to sanitize.
+
+    Returns:
+        str: The sanitized filename.
+    """
+    illegal_chars = ['<', '>', ':', '"', '/', '\\', '|', '?', '*']
+    for char in illegal_chars:
+        filename = filename.replace(char, '')
+    return filename
+
 def download_track(url, save_path='./'):
     """
     Downloads a track from YouTube Music as an MP4 file and converts it to MP3.
@@ -19,18 +34,21 @@ def download_track(url, save_path='./'):
         # Select the audio stream with the highest quality
         audio_stream = yt.streams.get_audio_only()
 
+        # Sanitize the title to use as filename
+        sanitized_title = sanitize_filename(yt.title)
+
         # Download the audio stream as MP4
-        mp4_filename = yt.title + '.mp4'
+        mp4_filename = sanitized_title + '.mp4'
         audio_stream.download(output_path=save_path, filename=mp4_filename)
 
         # Convert MP4 to MP3 using pydub
-        mp3_filename = yt.title + '.mp3'
+        mp3_filename = sanitized_title + '.mp3'
         AudioSegment.from_file(os.path.join(save_path, mp4_filename)).export(os.path.join(save_path, mp3_filename), format="mp3")
 
         # Delete the original MP4 file
         os.remove(os.path.join(save_path, mp4_filename))
 
-        print(f"Downloaded and converted '{yt.title}' successfully.")
+        print(f"Downloaded and converted '{sanitized_title}' successfully.")
 
     except CouldntDecodeError:
         print("Failed to convert the track. Please ensure ffmpeg/ffprobe is installed and available in your PATH.")

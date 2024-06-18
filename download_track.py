@@ -26,6 +26,9 @@ def download_track(url, save_path='./'):
     Args:
         url (str): The URL of the YouTube Music track to download.
         save_path (str): The directory to save the downloaded MP3 file.
+
+    Returns:
+        str: The path of the downloaded MP3 file.
     """
     try:
         # Create YouTube object with the URL
@@ -43,12 +46,15 @@ def download_track(url, save_path='./'):
 
         # Convert MP4 to MP3 using pydub
         mp3_filename = sanitized_title + '.mp3'
-        AudioSegment.from_file(os.path.join(save_path, mp4_filename)).export(os.path.join(save_path, mp3_filename), format="mp3")
+        mp3_path = os.path.join(save_path, mp3_filename)
+        AudioSegment.from_file(os.path.join(save_path, mp4_filename)).export(mp3_path, format="mp3")
 
         # Delete the original MP4 file
         os.remove(os.path.join(save_path, mp4_filename))
 
-        print(f"Downloaded and converted '{sanitized_title}' successfully.")
+        print(f"Downloaded and converted '{sanitized_title}' successfully. MP3 saved at: {mp3_path}")
+
+        return mp3_path
 
     except CouldntDecodeError:
         print("Failed to convert the track. Please ensure ffmpeg/ffprobe is installed and available in your PATH.")

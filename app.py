@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, send_file
+from download_track import download_track
 import os
 
 app = Flask(__name__)
@@ -11,16 +12,13 @@ def home():
 def download_file():
     if request.method == 'POST':
         url = request.form['url']
-        # Ensure the file exists and is accessible
-        filename = 'testfile.txt'
-        filepath = os.path.join(app.root_path, 'static', filename)
-        if os.path.exists(filepath):
-            return send_file(filepath)
+        # Use download_track to process the URL and get the MP3 file path
+        mp3_file_path = download_track(url)
+        if os.path.exists(mp3_file_path):
+            return send_file(mp3_file_path, as_attachment=True)
         else:
-            return "File not found.", 404
+            return "Failed to download the track.", 404
     return 'Please submit the form.'
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)

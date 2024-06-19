@@ -63,6 +63,16 @@ This will download all tracks in the specified playlist as MP4 files and then co
 
 To ensure compatibility across different file systems and prevent errors during file saving, filenames derived from YouTube titles are sanitized to remove or replace illegal characters. This process involves removing characters that are not allowed in filenames on certain operating systems, such as slashes, colons, and asterisks. This sanitization step is performed automatically by the `download_track.py` script before saving any files.
 
+## Starting the Flask Application
+
+To start the Flask application with the `--debug` option, use the following command:
+
+```
+flask run --debug
+```
+
+Running Flask in debug mode offers several benefits, including automatic application reloading on code changes and enhanced debugging features. This mode is highly recommended during development for a more efficient workflow.
+
 ## Docker Support
 
 To run this application using Docker, follow these steps:

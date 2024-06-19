@@ -41,3 +41,16 @@ jobs:
           file: ./Dockerfile-flask
           push: true
           tags: ghcr.io/${{ github.repository }}-flask:latest
+
+  deploy-to-azure:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Create Azure container instance
+        run: |
+          az container create --resource-group FlaskResourceGroup --name publish-image-azure --image ghcr.io/jcansdale/extract-mp3-flask:latest --dns-name-label publish-image-azure --ports 80

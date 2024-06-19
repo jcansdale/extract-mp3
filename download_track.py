@@ -54,7 +54,7 @@ def download_track(url, save_path='./'):
 
         print(f"Downloaded and converted '{sanitized_title}' successfully. MP3 saved at: {mp3_path}")
 
-        return mp3_path
+        return os.path.abspath(mp3_path)
 
     except CouldntDecodeError:
         print("Failed to convert the track. Please ensure ffmpeg/ffprobe is installed and available in your PATH.")

@@ -53,4 +53,4 @@ jobs:
 
       - name: Create Azure container instance
         run: |
-          az container create --resource-group FlaskResourceGroup --name extract-mp3 --image ghcr.io/jcansdale/extract-mp3-flask:latest --dns-name-label publish-image-azure --ports 80
+          az container create --resource-group FlaskResourceGroup --name extract-mp3 --image ghcr.io/jcansdale/extract-mp3-flask:latest --dns-name-label extract-mp3 --ports 80

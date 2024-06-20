@@ -42,20 +42,21 @@ def download_track(url, save_path='./'):
 
         # Download the audio stream as MP4
         mp4_filename = sanitized_title + '.mp4'
-        audio_stream.download(output_path=save_path, filename=mp4_filename)
+        mp4_path = os.path.join(save_path, mp4_filename)
+        audio_stream.download(filename=mp4_path)
 
         # Convert MP4 to MP3 using pydub
         mp3_filename = sanitized_title + '.mp3'
         mp3_path = os.path.join(save_path, mp3_filename)
-        AudioSegment.from_file(os.path.join(save_path, mp4_filename)).export(mp3_path, format="mp3")
+        AudioSegment.from_file(mp4_path).export(mp3_path, format="mp3")
 
         # Delete the original MP4 file
-        os.remove(os.path.join(save_path, mp4_filename))
+        os.remove(mp4_path)
 
         print(f"Downloaded and converted '{sanitized_title}' successfully. MP3 saved at: {mp3_path}")
 
-        return os.path.abspath(mp3_path)
-
+        return mp3_path
+    
     except CouldntDecodeError:
         print("Failed to convert the track. Please ensure ffmpeg/ffprobe is installed and available in your PATH.")
     except Exception as e:

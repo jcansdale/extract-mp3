@@ -1,4 +1,4 @@
-pytube>=10.0.0
+pytubefix
 pydub
 # ffmpeg needs to be installed separately and is not a Python package.
 

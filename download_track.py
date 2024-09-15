@@ -1,6 +1,6 @@
 import os
 import sys  # Import sys module to access command line arguments
-from pytube import YouTube, Playlist
+from pytubefix import YouTube, Playlist
 from pydub import AudioSegment  # Import AudioSegment from pydub
 from pydub.exceptions import CouldntDecodeError
 

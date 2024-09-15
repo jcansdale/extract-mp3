@@ -11,7 +11,7 @@ The setup process for Codespaces is now automated. When a codespace is created, 
 To run the `download_track.py` script, you will need:
 - Python 3.6 or newer
 - Install the required libraries using `pip install -r requirements.txt`. This will install:
-  - `pytube` library version 10.0.0 or newer for playlist functionality
+  - `pytubefix` library for playlist functionality
   - `pydub` library
 - `ffmpeg` installed for handling audio conversions. `ffmpeg` is not a Python package and needs to be installed separately. You can install it using your system's package manager or download it from [FFmpeg's official website](https://ffmpeg.org/download.html)
 
